@@ -31,3 +31,6 @@ build/
 
 ### VS Code ###
 .vscode/
+
+## 忽略node_modules
+/component-demo/node_modules/
