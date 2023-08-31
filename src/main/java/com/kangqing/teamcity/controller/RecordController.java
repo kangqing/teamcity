@@ -32,6 +32,11 @@ public class RecordController {
         return JsonResult.success("新增成功");
     }
 
+    @GetMapping("/getValue/{type}")
+    public JsonResult<?> getValue(@PathVariable Integer type) {
+        return JsonResult.success(recordService.getValue(type));
+    }
+
 
 
 }
