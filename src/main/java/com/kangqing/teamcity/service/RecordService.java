@@ -8,6 +8,9 @@ import com.mybatisflex.core.query.QueryWrapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+
 import static com.kangqing.teamcity.entity.table.RecordTableDef.RECORD;
 
 /**
@@ -42,5 +45,15 @@ public class RecordService {
     public void add(Record record) {
         record.setCreateTime(DateTime.now().toString("yyyy-MM-dd HH:mm:ss"));
         recordMapper.insert(record);
+    }
+
+    public String getValue(Integer type) {
+        QueryWrapper queryWrapper = QueryWrapper.create()
+                .select()
+                .from(RECORD)
+                .and(RECORD.TYPE.eq(type));
+        final List<Record> recordList = recordMapper.selectListByQuery(queryWrapper);
+        Integer res = recordList.stream().mapToInt(Record::getMoney).sum();
+        return String.valueOf(res);
     }
 }
