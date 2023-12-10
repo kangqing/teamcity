@@ -37,6 +37,15 @@ public class RecordController {
         return JsonResult.success(recordService.getValue(type));
     }
 
+    /**
+     * 查询金额
+     * @return 金额
+     */
+    @GetMapping("/account")
+    public JsonResult<?> getCount(Record record) {
+        return JsonResult.success(recordService.getCount(record));
+    }
+
 
 
 }
